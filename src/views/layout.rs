@@ -3,7 +3,18 @@ use dioxus::prelude::*;
 
 #[component]
 pub fn SiteLayout() -> Element {
-    let nav_class = "rounded-lg px-3.5 py-2 text-sm font-semibold text-[var(--text)] transition hover:bg-[rgba(25,120,164,0.1)] hover:text-[var(--primary-deep)]";
+    let current: Route = use_route();
+    let (is_landing, is_about, is_downloads) = match &current {
+        Route::Landing {} => (true, false, false),
+        Route::About {} => (false, true, false),
+        Route::Downloads {}
+        | Route::DownloadAuthor {}
+        | Route::DownloadPlayer {}
+        | Route::DownloadCli {} => (false, false, true),
+    };
+
+    let nav_inactive = "rounded-lg px-3.5 py-2 text-sm font-semibold text-[var(--text)] transition hover:bg-[rgba(25,120,164,0.1)] hover:text-[var(--primary-deep)]";
+    let nav_active = "rounded-lg px-3.5 py-2 text-sm font-semibold text-[var(--primary-deep)] bg-[rgba(25,120,164,0.18)] ring-1 ring-[rgba(25,120,164,0.35)]";
 
     rsx! {
         div { class: "min-h-screen px-3 py-4 md:px-6",
@@ -30,9 +41,9 @@ pub fn SiteLayout() -> Element {
                     }
 
                     nav { class: "flex flex-wrap gap-1.5",
-                        Link { to: Route::Landing {}, class: nav_class, "Home" }
-                        Link { to: Route::About {}, class: nav_class, "About" }
-                        Link { to: Route::Downloads {}, class: nav_class, "Downloads" }
+                        Link { to: Route::Landing {}, class: if is_landing { nav_active } else { nav_inactive }, "Home" }
+                        Link { to: Route::About {}, class: if is_about { nav_active } else { nav_inactive }, "About" }
+                        Link { to: Route::Downloads {}, class: if is_downloads { nav_active } else { nav_inactive }, "Downloads" }
                     }
                 }
 
