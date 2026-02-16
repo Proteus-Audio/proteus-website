@@ -38,8 +38,7 @@
 }
 
 :root {
-  --bg: #edf3f7;
-  --bg-accent: #d4e6f1;
+  --bg: #f2f5f7;
   --surface: #ffffff;
   --line: #d5dee3;
   --text: #1f2b36;
@@ -47,8 +46,8 @@
   --primary: #1978a4;
   --primary-deep: #125f82;
   --analog: #e0c25c;
-  --shadow: 0 16px 40px rgba(20, 40, 56, 0.12);
-  --radius: 14px;
+  --shadow: 0 1px 0 rgba(20, 40, 56, 0.06);
+  --radius: 4px;
 }
 
 body {
@@ -56,10 +55,7 @@ body {
   min-height: 100vh;
   font-family: "Inter", "Segoe UI", sans-serif;
   color: var(--text);
-  background:
-    radial-gradient(circle at 0% 0%, rgba(25, 120, 164, 0.2), transparent 36%),
-    radial-gradient(circle at 100% 20%, rgba(224, 194, 92, 0.18), transparent 38%),
-    linear-gradient(160deg, var(--bg), var(--bg-accent));
+  background: var(--bg);
 }
 
 .surface-card {

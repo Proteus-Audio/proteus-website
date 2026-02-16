@@ -6,11 +6,11 @@ use dioxus::prelude::*;
 pub fn Landing() -> Element {
     rsx! {
         section {
-            class: "surface-card grid gap-4 bg-gradient-to-br from-[rgba(255,255,255,0.95)] to-[rgba(235,246,252,0.9)] p-5 md:grid-cols-[1.3fr_0.7fr] md:p-6",
+            class: "surface-card grid gap-4 p-5 md:grid-cols-[1.3fr_0.7fr] md:p-6",
             div {
                 class: "space-y-4",
                 p {
-                    class: "font-['silkscreen'] text-[11px] tracking-[0.06em] text-[var(--primary-deep)]",
+                    class: "font-silkscreen text-[11px] tracking-[0.06em] text-[var(--primary-deep)]",
                     "Procedural Song Playback"
                 }
                 h2 {
@@ -36,7 +36,7 @@ pub fn Landing() -> Element {
             }
 
             div {
-                class: "surface-card flex flex-col items-center justify-center bg-gradient-to-b from-[#f8fbfd] to-[#e5f0f8] p-4 text-center",
+                class: "surface-card flex flex-col items-center justify-center bg-[#f8fbfd] p-4 text-center",
                 img {
                     class: "pixelated-icon w-[72%] max-w-[220px]",
                     src: asset!("/assets/images/icon.png"),

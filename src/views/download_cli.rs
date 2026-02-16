@@ -12,7 +12,7 @@ pub fn DownloadCli() -> Element {
             }
 
             div {
-                class: "mt-5 surface-card bg-gradient-to-b from-white to-[#f6fafc] p-4",
+                class: "mt-5 surface-card p-4",
                 h3 { class: "text-lg font-semibold text-[var(--text)]", "Install Options" }
                 div { class: "mt-2 list-disc space-y-1 pl-6 text-sm leading-7 text-muted",
                     "Currently the CLI is only available through Cargo but can be installed with the command ",

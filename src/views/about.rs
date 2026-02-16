@@ -15,7 +15,7 @@ pub fn About() -> Element {
                 "The core idea is to capture multiple takes per part and let playback choose combinations in real time, making each listen distinct while preserving a defined structure."
             }
             blockquote {
-                class: "mt-4 rounded-r-lg border-l-4 border-[var(--analog)] bg-[#fffbef] px-4 py-3 text-sm text-[#5a4c25]",
+                class: "mt-4 rounded-r-sm border-l-4 border-[var(--analog)] bg-[#fffbef] px-4 py-3 text-sm text-[#5a4c25]",
                 "\"It’s possible that our grandchildren will look at us and say ‘You mean people used to listen to the same thing over and over again?’\""
             }
             p {

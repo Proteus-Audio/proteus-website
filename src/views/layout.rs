@@ -13,14 +13,14 @@ pub fn SiteLayout() -> Element {
         | Route::DownloadCli {} => (false, false, true),
     };
 
-    let nav_inactive = "rounded-lg px-3.5 py-2 text-sm font-semibold text-[var(--text)] transition hover:bg-[rgba(25,120,164,0.1)] hover:text-[var(--primary-deep)]";
-    let nav_active = "rounded-lg px-3.5 py-2 text-sm font-semibold text-[var(--primary-deep)] bg-[rgba(25,120,164,0.18)] ring-1 ring-[rgba(25,120,164,0.35)]";
+    let nav_inactive = "rounded-sm border border-transparent px-3.5 py-2 text-sm font-semibold text-[var(--text)] transition hover:bg-[rgba(25,120,164,0.08)] hover:text-[var(--primary-deep)]";
+    let nav_active = "rounded-sm border border-[rgba(25,120,164,0.35)] bg-[rgba(25,120,164,0.12)] px-3.5 py-2 text-sm font-semibold text-[var(--primary-deep)]";
 
     rsx! {
         div { class: "min-h-screen px-3 py-4 md:px-6",
             div { class: "mx-auto w-full max-w-6xl",
                 header {
-                    class: "surface-card flex flex-col gap-4 bg-[rgba(255,255,255,0.82)] p-4 backdrop-blur-sm md:flex-row md:items-center md:justify-between",
+                    class: "surface-card flex flex-col gap-4 bg-white p-4 md:flex-row md:items-center md:justify-between",
                     div {
                         class: "flex items-center gap-3",
                         img {
@@ -34,7 +34,7 @@ pub fn SiteLayout() -> Element {
                                 "Proteus Audio"
                             }
                             h1 {
-                                class: "font-['silkscreen'] font-bold m-0 text-lg tracking-[0.04em]",
+                                class: "font-silkscreen m-0 text-lg tracking-[0.04em]",
                                 "Proteus"
                             }
                         }

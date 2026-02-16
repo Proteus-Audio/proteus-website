@@ -334,6 +334,10 @@
     border-top-right-radius: var(--radius-lg);
     border-bottom-right-radius: var(--radius-lg);
   }
+  .rounded-r-sm {
+    border-top-right-radius: var(--radius-sm);
+    border-bottom-right-radius: var(--radius-sm);
+  }
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
@@ -341,6 +345,9 @@
   .border-l-4 {
     border-left-style: var(--tw-border-style);
     border-left-width: 4px;
+  }
+  .border-\[rgba\(25\,120\,164\,0\.35\)\] {
+    border-color: rgba(25,120,164,0.35);
   }
   .border-\[var\(--analog\)\] {
     border-color: var(--analog);
@@ -353,6 +360,12 @@
   }
   .border-gray-200 {
     border-color: var(--color-gray-200);
+  }
+  .border-transparent {
+    border-color: transparent;
+  }
+  .bg-\[\#f8fbfd\] {
+    background-color: #f8fbfd;
   }
   .bg-\[\#fffbef\] {
     background-color: #fffbef;
@@ -580,6 +593,13 @@
     &:hover {
       @media (hover: hover) {
         background-color: rgba(25,120,164,0.1);
+      }
+    }
+  }
+  .hover\:bg-\[rgba\(25\,120\,164\,0\.08\)\] {
+    &:hover {
+      @media (hover: hover) {
+        background-color: rgba(25,120,164,0.08);
       }
     }
   }

@@ -352,9 +352,9 @@ fn pick_best_asset(
 
 fn os_button_class(active: bool) -> &'static str {
     if active {
-        "rounded-lg border border-[var(--primary)] bg-[rgba(25,120,164,0.12)] px-3 py-1.5 text-xs font-semibold text-[var(--primary-deep)]"
+        "rounded-sm border border-[var(--primary)] bg-[rgba(25,120,164,0.12)] px-3 py-1.5 text-xs font-semibold text-[var(--primary-deep)]"
     } else {
-        "rounded-lg border border-[var(--line)] bg-white px-3 py-1.5 text-xs font-semibold text-[var(--text)] hover:border-[var(--primary)]"
+        "rounded-sm border border-[var(--line)] bg-white px-3 py-1.5 text-xs font-semibold text-[var(--text)] hover:border-[var(--primary)]"
     }
 }
 
@@ -372,7 +372,7 @@ pub fn SectionPanel(children: Element) -> Element {
 pub fn InfoCard(title: String, description: String) -> Element {
     rsx! {
         article {
-            class: "surface-card bg-gradient-to-b from-white to-[#f6fafc] p-4",
+            class: "surface-card p-4",
             h3 { class: "text-lg font-semibold text-[var(--text)]", "{title}" }
             p { class: "mt-2 text-sm leading-6 text-muted", "{description}" }
         }
@@ -388,7 +388,7 @@ pub fn DownloadCard(name: String, description: String, to: Route, action_label: 
             p { class: "mt-2 text-sm leading-6 text-muted", "{description}" }
             Link {
                 to,
-                class: "mt-4 inline-block rounded-xl border border-[var(--line)] bg-white px-4 py-2 text-sm font-semibold text-[var(--text)] transition hover:border-[var(--primary)] hover:text-[var(--primary-deep)]",
+                class: "mt-4 inline-block rounded-sm border border-[var(--line)] bg-white px-4 py-2 text-sm font-semibold text-[var(--text)] transition hover:border-[var(--primary)] hover:text-[var(--primary-deep)]",
                 "{action_label}"
             }
         }
@@ -398,9 +398,9 @@ pub fn DownloadCard(name: String, description: String, to: Route, action_label: 
 #[component]
 pub fn CtaLink(to: Route, label: String, primary: bool) -> Element {
     let class = if primary {
-        "rounded-xl bg-[var(--primary)] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[var(--primary-deep)]"
+        "rounded-sm bg-[var(--primary)] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[var(--primary-deep)]"
     } else {
-        "rounded-xl border border-[var(--line)] bg-white px-4 py-2.5 text-sm font-bold text-[var(--text)] transition hover:border-[var(--primary)] hover:text-[var(--primary-deep)]"
+        "rounded-sm border border-[var(--line)] bg-white px-4 py-2.5 text-sm font-bold text-[var(--text)] transition hover:border-[var(--primary)] hover:text-[var(--primary-deep)]"
     };
 
     rsx! {
@@ -503,7 +503,7 @@ pub fn DesktopAppDownloadPanel(
         p { class: "mt-3 text-sm leading-7 text-muted md:text-base", "{summary}" }
 
         div {
-            class: "mt-5 surface-card bg-gradient-to-b from-white to-[#f6fafc] p-4",
+            class: "mt-5 surface-card p-4",
             p {
                 class: "text-sm text-muted",
                 "Detected platform: "
@@ -564,21 +564,21 @@ pub fn DesktopAppDownloadPanel(
 
             div { class: "mt-4 flex flex-wrap gap-2.5",
                 a {
-                    class: "rounded-xl bg-[var(--primary)] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[var(--primary-deep)]",
+                    class: "rounded-sm bg-[var(--primary)] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[var(--primary-deep)]",
                     href: "{primary_href}",
                     target: "_blank",
                     rel: "noopener noreferrer",
                     "{primary_cta}"
                 }
                 a {
-                    class: "rounded-xl border border-[var(--line)] bg-white px-4 py-2.5 text-sm font-bold text-[var(--text)] transition hover:border-[var(--primary)] hover:text-[var(--primary-deep)]",
+                    class: "rounded-sm border border-[var(--line)] bg-white px-4 py-2.5 text-sm font-bold text-[var(--text)] transition hover:border-[var(--primary)] hover:text-[var(--primary-deep)]",
                     href: "{effective_release_url}",
                     target: "_blank",
                     rel: "noopener noreferrer",
                     "{release_label}"
                 }
                 a {
-                    class: "rounded-xl border border-[var(--line)] bg-white px-4 py-2.5 text-sm font-bold text-[var(--text)] transition hover:border-[var(--primary)] hover:text-[var(--primary-deep)]",
+                    class: "rounded-sm border border-[var(--line)] bg-white px-4 py-2.5 text-sm font-bold text-[var(--text)] transition hover:border-[var(--primary)] hover:text-[var(--primary-deep)]",
                     href: "{repo_url}",
                     target: "_blank",
                     rel: "noopener noreferrer",
