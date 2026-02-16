@@ -19,17 +19,17 @@ pub fn Landing() -> Element {
                 }
                 p {
                     class: "max-w-3xl text-sm leading-7 text-muted md:text-base",
-                    "Proteus explores non-fixed audio playback by combining alternate takes of each track into a unique performance every time you press play."
+                    "Proteus Audio explores non-fixed audio playback by bundling a track into a container with internal grouped alternatives. Randomizing these internal audio alternates allows something of a unique performance every time you press play."
                 }
                 div { class: "flex flex-wrap gap-2.5",
                     CtaLink {
                         to: Route::Downloads {},
-                        label: "Get Downloads".to_string(),
+                        label: "Go to Downloads".to_string(),
                         primary: true,
                     }
                     CtaLink {
                         to: Route::About {},
-                        label: "Read the Story".to_string(),
+                        label: "Read About the Idea".to_string(),
                         primary: false,
                     }
                 }
@@ -42,7 +42,7 @@ pub fn Landing() -> Element {
                     src: asset!("/assets/images/icon.png"),
                     alt: "Proteus wave icon",
                 }
-                p { class: "mt-3 text-sm text-muted", "Inspired by the Proteus Author interface" }
+                p { class: "mt-3 text-sm text-muted", "Proteus, the Old Man of the Sea, was the Greek god of change and transformation." }
             }
         }
 
