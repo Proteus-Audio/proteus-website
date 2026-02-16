@@ -23,7 +23,18 @@
   font-family: "Silkscreen";
   font-style: normal;
   font-weight: 400;
-  src: url("/assets/fonts/silkscreen-v1-latin/silkscreen-v1-latin-regular.woff2") format("woff2");
+  font-display: swap;
+  src:
+    url("/assets/fonts/silkscreen-v1-latin/Silkscreen-Regular.ttf") format("truetype"),
+    url("/assets/fonts/silkscreen-v1-latin/silkscreen-v1-latin-regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Silkscreen";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/assets/fonts/silkscreen-v1-latin/Silkscreen-Bold.ttf") format("truetype");
 }
 
 :root {
@@ -64,4 +75,8 @@ body {
 
 .pixelated-icon {
   image-rendering: pixelated;
+}
+
+.font-silkscreen {
+  font-family: "Silkscreen", "Inter", sans-serif;
 }

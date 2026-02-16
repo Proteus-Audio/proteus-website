@@ -10,7 +10,7 @@ pub fn Landing() -> Element {
             div {
                 class: "space-y-4",
                 p {
-                    class: "font-['Silkscreen'] text-[11px] tracking-[0.06em] text-[var(--primary-deep)]",
+                    class: "font-['silkscreen'] text-[11px] tracking-[0.06em] text-[var(--primary-deep)]",
                     "Procedural Song Playback"
                 }
                 h2 {

@@ -23,7 +23,7 @@ pub fn SiteLayout() -> Element {
                                 "Proteus Audio"
                             }
                             h1 {
-                                class: "m-0 font-['Silkscreen'] text-lg tracking-[0.04em]",
+                                class: "font-['silkscreen'] font-bold m-0 text-lg tracking-[0.04em]",
                                 "Proteus"
                             }
                         }
