@@ -15,7 +15,7 @@ pub fn Landing() -> Element {
                 }
                 h2 {
                     class: "text-3xl font-extrabold leading-tight text-[var(--text)] md:text-5xl",
-                    "A new medium for recorded music."
+                    "A new audio format for recorded music."
                 }
                 p {
                     class: "max-w-3xl text-sm leading-7 text-muted md:text-base",
@@ -50,11 +50,11 @@ pub fn Landing() -> Element {
             class: "grid gap-4 md:grid-cols-3",
             InfoCard {
                 title: "Variable Playback".to_string(),
-                description: "One .prot project can produce large numbers of valid combinations from real performances instead of static renders.".to_string(),
+                description: "One .prot file can produce large numbers of valid combinations from real performances instead of static renders.".to_string(),
             }
             InfoCard {
                 title: "Artist-Controlled Structure".to_string(),
-                description: "Creators define tracks, parts, and behavior to keep each playback coherent while still being dynamic.".to_string(),
+                description: "Musicians define tracks, parts, and behavior to maintain an artistic vision determined by humans rather than machines.".to_string(),
             }
             InfoCard {
                 title: "Rust + Desktop Tooling".to_string(),

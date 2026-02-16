@@ -49,7 +49,7 @@ pub fn SiteLayout() -> Element {
 
                 main { class: "mt-4 grid gap-4", Outlet::<Route> {} }
 
-                footer { class: "mt-4 text-center text-sm text-muted", p { "Proteus Audio Project" } }
+                footer { class: "mt-4 text-center text-sm text-muted", p { "© 2026 - Proteus Audio Project" } }
             }
         }
     }
