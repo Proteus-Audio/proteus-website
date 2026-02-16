@@ -9,41 +9,11 @@ pub enum DesktopOs {
     Unknown,
 }
 
-impl DesktopOs {
-    fn label(self) -> &'static str {
-        match self {
-            Self::MacOS => "macOS",
-            Self::Windows => "Windows",
-            Self::Linux => "Linux",
-            Self::Unknown => "Unknown",
-        }
-    }
-
-    fn installer_hint(self) -> &'static str {
-        match self {
-            Self::MacOS => ".dmg installer",
-            Self::Windows => ".msi installer",
-            Self::Linux => ".AppImage or distro package",
-            Self::Unknown => "release archive",
-        }
-    }
-}
-
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub enum DesktopArch {
     X64,
     Arm64,
     Unknown,
-}
-
-impl DesktopArch {
-    fn label(self) -> &'static str {
-        match self {
-            Self::X64 => "x64",
-            Self::Arm64 => "arm64",
-            Self::Unknown => "unknown",
-        }
-    }
 }
 
 #[derive(Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
@@ -358,6 +328,32 @@ fn os_button_class(active: bool) -> &'static str {
     }
 }
 
+fn arch_download_label(os: DesktopOs, arch: DesktopArch) -> &'static str {
+    match (os, arch) {
+        (DesktopOs::MacOS, DesktopArch::X64) => "Download for Intel Mac",
+        (DesktopOs::MacOS, DesktopArch::Arm64) => "Download for Apple Silicon Mac",
+        (DesktopOs::Windows, DesktopArch::X64) | (DesktopOs::Linux, DesktopArch::X64) => {
+            "Download for x86"
+        }
+        (DesktopOs::Windows, DesktopArch::Arm64) | (DesktopOs::Linux, DesktopArch::Arm64) => {
+            "Download for ARM"
+        }
+        (_, DesktopArch::X64) => "Download for x86",
+        (_, DesktopArch::Arm64) => "Download for ARM",
+        _ => "Download",
+    }
+}
+
+fn arch_choice_label(os: DesktopOs, arch: DesktopArch) -> &'static str {
+    match (os, arch) {
+        (DesktopOs::MacOS, DesktopArch::X64) => "Intel Mac",
+        (DesktopOs::MacOS, DesktopArch::Arm64) => "Apple Silicon",
+        (_, DesktopArch::X64) => "x86",
+        (_, DesktopArch::Arm64) => "ARM",
+        _ => "Unknown",
+    }
+}
+
 #[component]
 pub fn SectionPanel(children: Element) -> Element {
     rsx! {
@@ -436,7 +432,10 @@ pub fn DesktopAppDownloadPanel(
             spawn(async move {
                 let (os, arch) = detect_platform_in_browser().await;
                 selected_os.set(os);
-                selected_arch.set(arch);
+                selected_arch.set(match arch {
+                    DesktopArch::Unknown => DesktopArch::X64,
+                    _ => arch,
+                });
 
                 match fetch_download_manifest(&manifest_url, &github_latest_api_url).await {
                     Ok(data) => {
@@ -455,8 +454,7 @@ pub fn DesktopAppDownloadPanel(
 
     let current_os = selected_os();
     let current_arch = selected_arch();
-
-    let best_asset = manifest()
+    let selected_asset = manifest()
         .as_ref()
         .and_then(|data| pick_best_asset(data, current_os, current_arch));
 
@@ -471,21 +469,10 @@ pub fn DesktopAppDownloadPanel(
         })
         .unwrap_or_else(|| fallback_release_url.clone());
 
-    let primary_href = best_asset
+    let download_href = selected_asset
         .as_ref()
         .map(|asset| asset.url.clone())
         .unwrap_or_else(|| effective_release_url.clone());
-
-    let primary_cta = if let Some(asset) = &best_asset {
-        format!("Download {} ({})", app_name, asset.name)
-    } else {
-        format!(
-            "Get {} for {} ({})",
-            app_name,
-            current_os.label(),
-            current_os.installer_hint()
-        )
-    };
 
     let release_label = manifest()
         .as_ref()
@@ -504,16 +491,8 @@ pub fn DesktopAppDownloadPanel(
 
         div {
             class: "mt-5 surface-card p-4",
-            p {
-                class: "text-sm text-muted",
-                "Detected platform: "
-                span { class: "font-semibold text-[var(--text)]", "{current_os.label()}" }
-                " / "
-                span { class: "font-semibold text-[var(--text)]", "{current_arch.label()}" }
-            }
-
             if manifest_loading() {
-                p { class: "mt-2 text-sm text-muted", "Loading release manifest..." }
+                p { class: "text-sm text-muted", "Loading release manifest..." }
             }
 
             if let Some(err) = manifest_error() {
@@ -523,15 +502,7 @@ pub fn DesktopAppDownloadPanel(
                 }
             }
 
-            if let Some(asset) = &best_asset {
-                p {
-                    class: "mt-2 text-sm text-muted",
-                    "Recommended asset: "
-                    span { class: "font-semibold text-[var(--text)]", "{asset.name}" }
-                }
-            }
-
-            div { class: "mt-3 flex flex-wrap gap-2",
+            div { class: if manifest_loading() { "mt-3 flex flex-wrap gap-2" } else { "flex flex-wrap gap-2" },
                 button {
                     class: os_button_class(current_os == DesktopOs::MacOS),
                     onclick: move |_| selected_os.set(DesktopOs::MacOS),
@@ -549,47 +520,79 @@ pub fn DesktopAppDownloadPanel(
                 }
             }
 
-            div { class: "mt-2 flex flex-wrap gap-2",
+            div { class: "mt-4 flex flex-wrap items-center justify-center gap-2",
                 button {
                     class: os_button_class(current_arch == DesktopArch::X64),
                     onclick: move |_| selected_arch.set(DesktopArch::X64),
-                    "x64"
+                    "{arch_choice_label(current_os, DesktopArch::X64)}"
                 }
                 button {
                     class: os_button_class(current_arch == DesktopArch::Arm64),
                     onclick: move |_| selected_arch.set(DesktopArch::Arm64),
-                    "arm64"
+                    "{arch_choice_label(current_os, DesktopArch::Arm64)}"
                 }
             }
 
-            div { class: "mt-4 flex flex-wrap gap-2.5",
+            div { class: "mx-auto mt-3 w-full max-w-xs",
                 a {
-                    class: "rounded-sm bg-[var(--primary)] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[var(--primary-deep)]",
-                    href: "{primary_href}",
+                    class: "block flex items-center justify-center text-cyan-700 group pointer-events-none",
+                    href: "{download_href}",
                     target: "_blank",
                     rel: "noopener noreferrer",
-                    "{primary_cta}"
+                    div { class: "flex flex-col items-center text-center",
+                        div {
+                            class: "aspect-square border border-cyan-700 bg-gray-200 rounded-sm p-6 transition group-hover:bg-[var(--primary)]/25",
+                            class: "pointer-events-auto",
+                            img {
+                                class: "pixelated-icon h-20 w-20",
+                                src: asset!("/assets/images/icon.png"),
+                                alt: "{app_name} icon"
+                            }
+                        }
+                        span { class: "mt-3 text-lg font-bold pointer-events-auto", "{arch_download_label(current_os, current_arch)}" }
+                    }
                 }
+            }
+
+            div { class: "mt-3 flex flex-wrap items-center justify-center gap-2.5",
                 a {
                     class: "rounded-sm border border-[var(--line)] bg-white px-4 py-2.5 text-sm font-bold text-[var(--text)] transition hover:border-[var(--primary)] hover:text-[var(--primary-deep)]",
                     href: "{effective_release_url}",
                     target: "_blank",
                     rel: "noopener noreferrer",
-                    "{release_label}"
+                    span { class: "inline-flex items-center gap-2",
+                        svg {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            view_box: "0 0 24 24",
+                            fill: "currentColor",
+                            class: "h-4 w-4",
+                            path { d: "M12 2C6.477 2 2 6.589 2 12.25c0 4.528 2.865 8.37 6.839 9.726.5.096.682-.223.682-.496 0-.244-.009-.892-.014-1.75-2.782.622-3.369-1.377-3.369-1.377-.455-1.179-1.11-1.493-1.11-1.493-.908-.636.069-.623.069-.623 1.004.072 1.532 1.054 1.532 1.054.892 1.56 2.341 1.11 2.91.848.091-.665.35-1.11.636-1.365-2.221-.259-4.555-1.137-4.555-5.063 0-1.119.39-2.034 1.03-2.751-.103-.26-.447-1.303.098-2.717 0 0 .84-.276 2.75 1.05A9.32 9.32 0 0 1 12 6.84c.85.004 1.706.119 2.505.35 1.909-1.326 2.748-1.05 2.748-1.05.546 1.414.202 2.457.1 2.717.64.717 1.028 1.632 1.028 2.751 0 3.936-2.338 4.801-4.566 5.055.359.319.678.948.678 1.91 0 1.379-.012 2.49-.012 2.829 0 .275.18.596.688.495C19.138 20.616 22 16.776 22 12.25 22 6.589 17.523 2 12 2z" }
+                        }
+                        "{release_label}"
+                    }
                 }
                 a {
                     class: "rounded-sm border border-[var(--line)] bg-white px-4 py-2.5 text-sm font-bold text-[var(--text)] transition hover:border-[var(--primary)] hover:text-[var(--primary-deep)]",
                     href: "{repo_url}",
                     target: "_blank",
                     rel: "noopener noreferrer",
-                    "View Repository"
+                    span { class: "inline-flex items-center gap-2",
+                        svg {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            view_box: "0 0 24 24",
+                            fill: "currentColor",
+                            class: "h-4 w-4",
+                            path { d: "M12 2C6.477 2 2 6.589 2 12.25c0 4.528 2.865 8.37 6.839 9.726.5.096.682-.223.682-.496 0-.244-.009-.892-.014-1.75-2.782.622-3.369-1.377-3.369-1.377-.455-1.179-1.11-1.493-1.11-1.493-.908-.636.069-.623.069-.623 1.004.072 1.532 1.054 1.532 1.054.892 1.56 2.341 1.11 2.91.848.091-.665.35-1.11.636-1.365-2.221-.259-4.555-1.137-4.555-5.063 0-1.119.39-2.034 1.03-2.751-.103-.26-.447-1.303.098-2.717 0 0 .84-.276 2.75 1.05A9.32 9.32 0 0 1 12 6.84c.85.004 1.706.119 2.505.35 1.909-1.326 2.748-1.05 2.748-1.05.546 1.414.202 2.457.1 2.717.64.717 1.028 1.632 1.028 2.751 0 3.936-2.338 4.801-4.566 5.055.359.319.678.948.678 1.91 0 1.379-.012 2.49-.012 2.829 0 .275.18.596.688.495C19.138 20.616 22 16.776 22 12.25 22 6.589 17.523 2 12 2z" }
+                        }
+                        "View Repository"
+                    }
                 }
             }
         }
 
         p {
             class: "mt-4 text-sm text-muted",
-            "Auto-selection uses downloads.json data. If needed, override OS/architecture before downloading."
+            "Auto-selection uses downloads.json data. Switch OS above if needed."
         }
     }
 }
