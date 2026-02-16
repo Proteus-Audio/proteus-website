@@ -18,3 +18,5 @@ pub use landing::Landing;
 
 mod layout;
 pub use layout::SiteLayout;
+
+mod health;

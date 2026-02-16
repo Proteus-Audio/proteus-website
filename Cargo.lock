@@ -3705,6 +3705,7 @@ dependencies = [
 name = "proteus-website"
 version = "0.1.0"
 dependencies = [
+ "chrono",
  "dioxus",
  "reqwest",
  "serde",
