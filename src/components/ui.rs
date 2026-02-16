@@ -30,13 +30,26 @@ impl DesktopOs {
 }
 
 fn detect_os_from_user_agent(ua: &str) -> DesktopOs {
-    let ua = ua.to_lowercase();
+    detect_os_from_signals(&[ua])
+}
 
-    if ua.contains("windows") {
+fn detect_os_from_signals(signals: &[&str]) -> DesktopOs {
+    let merged = signals.join(" ").to_lowercase();
+
+    if merged.contains("windows") || merged.contains("win32") || merged.contains("win64") {
         DesktopOs::Windows
-    } else if ua.contains("mac os") || ua.contains("macintosh") || ua.contains("darwin") {
+    } else if merged.contains("mac os")
+        || merged.contains("macintosh")
+        || merged.contains("darwin")
+        || merged.contains("macintel")
+    {
         DesktopOs::MacOS
-    } else if ua.contains("linux") || ua.contains("x11") {
+    } else if merged.contains("linux")
+        || merged.contains("x11")
+        || merged.contains("ubuntu")
+        || merged.contains("fedora")
+        || merged.contains("debian")
+    {
         DesktopOs::Linux
     } else {
         DesktopOs::Unknown
@@ -44,11 +57,24 @@ fn detect_os_from_user_agent(ua: &str) -> DesktopOs {
 }
 
 async fn detect_os_in_browser() -> DesktopOs {
-    match document::eval("window?.navigator?.userAgent ?? ''")
-        .join::<String>()
-        .await
-    {
-        Ok(ua) => detect_os_from_user_agent(&ua),
+    let script = r#"
+        const nav = window?.navigator ?? {};
+        const uaDataPlatform = nav.userAgentData?.platform ?? "";
+        const platform = nav.platform ?? "";
+        const userAgent = nav.userAgent ?? "";
+        const appVersion = nav.appVersion ?? "";
+        return `${uaDataPlatform}|||${platform}|||${userAgent}|||${appVersion}`;
+    "#;
+
+    match document::eval(script).join::<String>().await {
+        Ok(raw) => {
+            let parts = raw.split("|||").collect::<Vec<_>>();
+            if parts.len() == 4 {
+                detect_os_from_signals(&[parts[0], parts[1], parts[2], parts[3]])
+            } else {
+                detect_os_from_user_agent(&raw)
+            }
+        }
         Err(_) => DesktopOs::Unknown,
     }
 }
