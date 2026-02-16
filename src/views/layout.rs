@@ -30,7 +30,7 @@ pub fn SiteLayout() -> Element {
                     }
 
                     nav { class: "flex flex-wrap gap-1.5",
-                        Link { to: Route::Landing {}, class: nav_class, "Landing" }
+                        Link { to: Route::Landing {}, class: nav_class, "Home" }
                         Link { to: Route::About {}, class: nav_class, "About" }
                         Link { to: Route::Downloads {}, class: nav_class, "Downloads" }
                     }
