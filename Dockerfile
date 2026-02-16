@@ -57,4 +57,4 @@ ENV IP=0.0.0.0
 
 EXPOSE 8080
 
-CMD ["/app/cmccdb"]
+CMD ["/app/proteus-website"]
