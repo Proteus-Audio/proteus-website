@@ -214,9 +214,6 @@
   .mx-auto {
     margin-inline: auto;
   }
-  .mt-1 {
-    margin-top: calc(var(--spacing) * 1);
-  }
   .mt-2 {
     margin-top: calc(var(--spacing) * 2);
   }
@@ -483,6 +480,9 @@
   }
   .text-\[\#5a4c25\] {
     color: #5a4c25;
+  }
+  .text-\[\#a64c4c\] {
+    color: #a64c4c;
   }
   .text-\[var\(--primary-deep\)\] {
     color: var(--primary-deep);

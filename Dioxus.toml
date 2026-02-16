@@ -3,7 +3,7 @@
 [web.app]
 
 # HTML title tag content
-title = "proteus-website"
+title = "Proteus Audio"
 
 # include `assets` in web platform
 [web.resource]

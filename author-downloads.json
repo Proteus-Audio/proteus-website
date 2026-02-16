@@ -1,0 +1,92 @@
+{
+  "version": "0.10.4",
+  "tag": "proteus-author-v0.10.4",
+  "release_url": "https://github.com/Proteus-Audio/proteus-author/releases/tag/proteus-author-v0.10.4",
+  "generated_at": "2026-02-16T10:20:15Z",
+  "assets": [
+    {
+      "name": "Proteus.Author-0.10.4-1.aarch64.rpm",
+      "size": 8135382,
+      "content_type": "application/zip",
+      "download_url": "https://github.com/Proteus-Audio/proteus-author/releases/download/proteus-author-v0.10.4/Proteus.Author-0.10.4-1.aarch64.rpm"
+    },
+    {
+      "name": "Proteus.Author-0.10.4-1.x86_64.rpm",
+      "size": 8234258,
+      "content_type": "application/zip",
+      "download_url": "https://github.com/Proteus-Audio/proteus-author/releases/download/proteus-author-v0.10.4/Proteus.Author-0.10.4-1.x86_64.rpm"
+    },
+    {
+      "name": "Proteus.Author_0.10.4_aarch64.AppImage",
+      "size": 78907912,
+      "content_type": "application/zip",
+      "download_url": "https://github.com/Proteus-Audio/proteus-author/releases/download/proteus-author-v0.10.4/Proteus.Author_0.10.4_aarch64.AppImage"
+    },
+    {
+      "name": "Proteus.Author_0.10.4_aarch64.dmg",
+      "size": 7797388,
+      "content_type": "application/zip",
+      "download_url": "https://github.com/Proteus-Audio/proteus-author/releases/download/proteus-author-v0.10.4/Proteus.Author_0.10.4_aarch64.dmg"
+    },
+    {
+      "name": "Proteus.Author_0.10.4_amd64.AppImage",
+      "size": 85445112,
+      "content_type": "application/zip",
+      "download_url": "https://github.com/Proteus-Audio/proteus-author/releases/download/proteus-author-v0.10.4/Proteus.Author_0.10.4_amd64.AppImage"
+    },
+    {
+      "name": "Proteus.Author_0.10.4_amd64.deb",
+      "size": 8233010,
+      "content_type": "application/zip",
+      "download_url": "https://github.com/Proteus-Audio/proteus-author/releases/download/proteus-author-v0.10.4/Proteus.Author_0.10.4_amd64.deb"
+    },
+    {
+      "name": "Proteus.Author_0.10.4_arm64-setup.exe",
+      "size": 4799002,
+      "content_type": "application/zip",
+      "download_url": "https://github.com/Proteus-Audio/proteus-author/releases/download/proteus-author-v0.10.4/Proteus.Author_0.10.4_arm64-setup.exe"
+    },
+    {
+      "name": "Proteus.Author_0.10.4_arm64.deb",
+      "size": 8134578,
+      "content_type": "application/zip",
+      "download_url": "https://github.com/Proteus-Audio/proteus-author/releases/download/proteus-author-v0.10.4/Proteus.Author_0.10.4_arm64.deb"
+    },
+    {
+      "name": "Proteus.Author_0.10.4_arm64_en-US.msi",
+      "size": 7077888,
+      "content_type": "application/zip",
+      "download_url": "https://github.com/Proteus-Audio/proteus-author/releases/download/proteus-author-v0.10.4/Proteus.Author_0.10.4_arm64_en-US.msi"
+    },
+    {
+      "name": "Proteus.Author_0.10.4_x64-setup.exe",
+      "size": 5462084,
+      "content_type": "application/zip",
+      "download_url": "https://github.com/Proteus-Audio/proteus-author/releases/download/proteus-author-v0.10.4/Proteus.Author_0.10.4_x64-setup.exe"
+    },
+    {
+      "name": "Proteus.Author_0.10.4_x64.dmg",
+      "size": 8204455,
+      "content_type": "application/zip",
+      "download_url": "https://github.com/Proteus-Audio/proteus-author/releases/download/proteus-author-v0.10.4/Proteus.Author_0.10.4_x64.dmg"
+    },
+    {
+      "name": "Proteus.Author_0.10.4_x64_en-US.msi",
+      "size": 7696384,
+      "content_type": "application/zip",
+      "download_url": "https://github.com/Proteus-Audio/proteus-author/releases/download/proteus-author-v0.10.4/Proteus.Author_0.10.4_x64_en-US.msi"
+    },
+    {
+      "name": "Proteus.Author_aarch64.app.tar.gz",
+      "size": 7606450,
+      "content_type": "application/zip",
+      "download_url": "https://github.com/Proteus-Audio/proteus-author/releases/download/proteus-author-v0.10.4/Proteus.Author_aarch64.app.tar.gz"
+    },
+    {
+      "name": "Proteus.Author_x64.app.tar.gz",
+      "size": 8019231,
+      "content_type": "application/zip",
+      "download_url": "https://github.com/Proteus-Audio/proteus-author/releases/download/proteus-author-v0.10.4/Proteus.Author_x64.app.tar.gz"
+    }
+  ]
+}
