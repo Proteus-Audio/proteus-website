@@ -1,6 +1,6 @@
 use dioxus::prelude::*;
 
-use views::{About, Downloads, Landing, SiteLayout};
+use views::{About, DownloadAuthor, DownloadCli, DownloadPlayer, Downloads, Landing, SiteLayout};
 
 mod components;
 mod views;
@@ -15,6 +15,12 @@ enum Route {
         About {},
         #[route("/downloads")]
         Downloads {},
+        #[route("/downloads/author")]
+        DownloadAuthor {},
+        #[route("/downloads/player")]
+        DownloadPlayer {},
+        #[route("/downloads/cli")]
+        DownloadCli {},
 }
 
 const FAVICON: Asset = asset!("/assets/favicon.ico");
