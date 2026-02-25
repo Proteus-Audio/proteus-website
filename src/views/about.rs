@@ -1,10 +1,13 @@
 use crate::components::SectionPanel;
+use crate::Route;
 use dioxus::prelude::*;
 
 #[component]
 pub fn About() -> Element {
     let paragraph_class = "mt-3 text-sm leading-7 text-muted md:text-base";
     let link_class = "underline decoration-[var(--primary)] decoration-1 underline-offset-2 hover:text-[var(--primary-deep)]";
+    let card_class = "surface-card mt-4 p-4 md:p-5";
+    let cta_class = "inline-flex items-center justify-center rounded-sm border border-[var(--primary)] px-3 py-2 text-sm font-semibold text-[var(--primary-deep)] transition hover:bg-[var(--primary)]/10";
 
     rsx! {
         SectionPanel {
@@ -17,166 +20,27 @@ pub fn About() -> Element {
 
             p {
                 class: paragraph_class,
-                "I attended a lecture in 2014 by Dr. Andy Farnell on Procedural Audio who spoke, in part, about the distinction between fixed and performance mediums (ie film vs stage, album vs concert). Making note of the fact that while a theatre performance has a fixed structure and the story envokes a mood, it also adapts itself to the space and time of the specific performance."
+                "Proteus grew out of a train of thoughts inspired by a 2014 lecture by Dr. Andy Farnell at the University of Edinburgh which spoke, in part, about the distinction between fixed and performance mediums (ie film vs stage, album vs concert)."
             }
 
             p {
                 class: paragraph_class,
-                "Though, undoutably, much of the draw of performance art is owed to community and social connection, I think there’s a case to be made that some of the power of perfomance is in its subtle unpredictability."
+                "Though, undoutably, much of the draw of performance art is owed to community and social connection, I think there’s a case to be made that some of the power of perfomance is in its subtle unpredictability. The Proteus Audio Project is an attempt to bring some of that unpredictability to recorded music."
             }
 
             p {
                 class: paragraph_class,
-                "While the world of popular cinematic storytelling is, at least in part, beginning to push itself out of a fixed format ("
-                a {
-                    class: link_class,
-                    href: "https://www.npr.org/2018/12/28/680671691/black-mirror-bandersnatch-makes-you-choose-your-own-adventure",
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                    i { "Black Mirror: Bandersnatch" }
-                }
-                " / "
-                a {
-                    class: link_class,
-                    href: "https://help.netflix.com/en/node/62526",
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                    "Neflix’s growing library of interactive content"
-                }
-                ") and the world of video gaming, which has long-touted interactive storytelling, is "
-                a {
-                    class: link_class,
-                    href: "https://youtu.be/d8B1LNrBpqc",
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                    "approaching cinematic realism"
-                }
-                ", popular recorded music is still very much fixed."
+                "The project explores a song format where multiple real takes of each part can be packaged together, then recombined at playback into a new but still intentional version of the same piece. That keeps the artistic integrity, but brings in a subtle (or not-subtle if the artist wished) level of unpredictability."
             }
 
             p {
                 class: paragraph_class,
-                "Procedural music itself is not a new thing, the video game and contemporary composition communities have been exploring it for a long while (Steve Reich’s "
-                a {
-                    class: link_class,
-                    href: "https://www.npr.org/sections/deceptivecadence/2015/01/27/381575433/fifty-years-of-steve-reichs-its-gonna-rain",
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                    i { "It’s Gonna Rain" }
-                }
-                " was recorded in 1965). But, as of yet, examples of procedural music in the realm of song are sparse."
+                "I started building in 2020 with simple proof-of-concept tooling, then moved through Flutter and Electron builds before landing on a Rust-focused stack and the current Proteus toolchain. Along the way, the format settled around packaged multi-part audio playback with room for metadata and playback guidance."
             }
 
             p {
                 class: paragraph_class,
-                "The, possibly obvious, solution that I would like to explore would be to record a song in such a way that you have some number (say 10) of each individual part (ie, 10 takes of the vocal, 10 of the drums, 10 of the guitar, etc). Then on play back, you choose a random selection of each part. On a simple song with 5 parts (Guitar, Vocals, Drums, Bass, Synth) this would yield 100,000 unique combinations."
-            }
-
-            p {
-                class: paragraph_class,
-                "Widespread internet accessibility and the popularity of streaming music could make this potentially very achievable."
-            }
-
-            p {
-                class: paragraph_class,
-                "My first proof of concept of this variable playback format ( "
-                a {
-                    class: link_class,
-                    href: "https://multiplay-wnabuuzq2q-uc.a.run.app/?ref=ath",
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                    "hosted here"
-                }
-                " ) used "
-                a {
-                    class: link_class,
-                    href: "http://sox.sourceforge.net/",
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                    "SoX"
-                }
-                " to simply combine the parts of a short piece into a new random composite file. In early 2021, I started to work on expanding the idea out with two "
-                a {
-                    class: link_class,
-                    href: "https://flutter.dev/",
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                    "Flutter"
-                }
-                "-based desktop applications ( "
-                a {
-                    class: link_class,
-                    href: "https://github.com/howardah/multiplay",
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                    "here"
-                }
-                " & "
-                a {
-                    class: link_class,
-                    href: "https://github.com/howardah/multiplay_mixer",
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                    "here"
-                }
-                " ) which read and write "
-                a {
-                    class: link_class,
-                    href: "https://www.matroska.org/index.html",
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                    "Matroska"
-                }
-                " Audio files. Using a streamable container file format like Matroska, it is possible to hold all the parts in one distinct package and stream different sets together as well has include additional data which can serve as a guide for how to process each part of the recording."
-            }
-
-            p {
-                class: paragraph_class,
-                "In mid-2022, I decided to replace the flutter applications with an "
-                a {
-                    class: link_class,
-                    href: "https://www.electronjs.org/",
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                    "ElectronJS"
-                }
-                " application in order to make use of the flexibility of CSS styling and, at the same time, decided to name the project after the Greek sea-god "
-                a {
-                    class: link_class,
-                    href: "https://en.wikipedia.org/wiki/Proteus",
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                    "Proteus"
-                }
-                " who represents mutability and is the root of the adjective ‘protean’."
-            }
-
-            p {
-                class: paragraph_class,
-                "Shortly after beginning to write the electron application, I realised that the resulting file size and performance of the build was far from ideal for a, relatively, simple application. I did some additional research and found "
-                a {
-                    class: link_class,
-                    href: "https://tauri.app/",
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                    "Tauri"
-                }
-                " which offers nearly everything that I was looking for with electron but with "
-                i { "significantly" }
-                " improved performance. Tauri's perfomative Rust-based encouraged me to build out a Rust-based CLI for parsing and playing .prot files which in integrated into this project as well as the "
-                a {
-                    class: link_class,
-                    href: "https://github.com/Proteus-Audio/proteus-player",
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                    "Proteus Player"
-                }
-                " application."
-            }
-
-            p {
-                class: paragraph_class,
-                "There's still much to do with the project so, if you would like to follow along, you can keep tabs on this repo its "
+                "While the applications are now functional, there’s still plenty to do. If you want to follow along, keep an eye on the project repos and "
                 a {
                     class: link_class,
                     href: "https://github.com/Proteus-Audio/proteus-author/issues",
@@ -184,13 +48,90 @@ pub fn About() -> Element {
                     rel: "noopener noreferrer",
                     "issues page"
                 }
-                ". If you’d like talk about the idea, feel free to give me a shout at "
+                a {
+                    class: link_class,
+                    href: "https://github.com/Proteus-Audio/proteus-player/issues",
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                    "(s)"
+                }
+                ", or reach out at "
                 a {
                     class: link_class,
                     href: "mailto:adam.thomas.howard@gmail.com",
                     "adam.thomas.howard@gmail.com"
                 }
-                "!"
+                "."
+            }
+
+            hr { class: "my-4 mt-8 border border-gray-200" }
+
+            h3 { class: "mt-8 text-2xl font-bold text-[var(--text)]", "Proteus Author" }
+            p {
+                class: paragraph_class,
+                "Proteus Author is the desktop app for building, organizing, and packaging Proteus projects into distributable .prot files."
+            }
+            div {
+                class: "mt-4 grid gap-4 lg:grid-cols-[1.2fr_0.8fr]",
+                    img {
+                        class: "w-full rounded-sm bg-white object-cover",
+                        src: "/images/prot-author-25-02-2026.webp",
+                        alt: "Screenshot of the Proteus Author desktop application",
+                    }
+                div {
+                    div {
+                        class: "{card_class} flex flex-col gap-4",
+                        div {
+                            h4 { class: "text-lg font-semibold text-[var(--text)]", "Author and export .prot files." }
+                            p {
+                                class: "mt-2 text-sm leading-7 text-muted",
+                                "A DAW inspired editor for managing track variants, track levels, mastering effects, and exporting projects into .prot structured files."
+                            }
+                        }
+                        div { class: "mt-4",
+                            Link {
+                                to: Route::DownloadAuthor {},
+                                class: cta_class,
+                                "Download Proteus Author"
+                            }
+                        }
+                    }
+                }
+            }
+
+            hr { class: "my-4 mt-8 border border-gray-200" }
+
+            h3 { class: "mt-8 text-2xl font-bold text-[var(--text)]", "Proteus Player" }
+            p {
+                class: paragraph_class,
+                "Proteus Player is the listening app for playing .prot files and hearing a fresh take each time you press play."
+            }
+            div {
+                class: "mt-4 grid gap-4 lg:grid-cols-[1.2fr_0.8fr]",
+                div {
+                    div {
+                        class: "{card_class} flex flex-col gap-4",
+                        div {
+                            h4 { class: "text-lg font-semibold text-[var(--text)]", "Single-file player" }
+                            p {
+                                class: "mt-2 text-sm leading-7 text-muted",
+                                "This application, inspired by Apple’s Quicktime Player, simply loads and plays single files. Stay tuned for a future application supporting a library-styled player."
+                            }
+                        }
+                        div { class: "mt-4",
+                            Link {
+                                to: Route::DownloadPlayer {},
+                                class: cta_class,
+                                "Download Proteus Player"
+                            }
+                        }
+                    }
+                },
+                img {
+                    class: "w-full rounded-sm bg-white object-cover",
+                    src: "/images/prot-player-25-02-2026.webp",
+                    alt: "Screenshot of the Proteus Author desktop application",
+                }
             }
         }
     }

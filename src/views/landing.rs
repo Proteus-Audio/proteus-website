@@ -19,7 +19,7 @@ pub fn Landing() -> Element {
                 }
                 p {
                     class: "max-w-3xl text-sm leading-7 text-muted md:text-base",
-                    "Proteus Audio explores non-fixed audio playback by bundling a track into a container with internal grouped alternatives. Randomizing these internal audio alternates allows something of a unique performance every time you press play."
+                    "Proteus Audio explores non-fixed audio playback by bundling a track into a container with internally grouped alternatives. Randomizing these internal audio alternates allows something of a unique performance every time you press play."
                 }
                 div { class: "flex flex-wrap gap-2.5",
                     CtaLink {
