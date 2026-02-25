@@ -42,7 +42,7 @@ pub fn Downloads() -> Element {
                 h2 { class: "text-2xl font-bold text-[var(--text)]", "File Downloads" }
                 p {
                     class: "mt-3 text-sm leading-7 text-muted md:text-base",
-                    "Download sample files to preview Proteus features and test playback."
+                    "Download sample files"
                 }
 
                 div { class: "mt-4 grid",
