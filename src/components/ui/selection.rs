@@ -50,9 +50,9 @@ fn score_asset(name: &str, os: DesktopOs, arch: DesktopArch) -> i32 {
             }
         }
         DesktopOs::Linux => {
-            if lower.ends_with(".appimage") {
+            if lower.ends_with(".deb") {
                 100
-            } else if lower.ends_with(".deb") {
+            } else if lower.ends_with(".appimage") {
                 90
             } else if lower.ends_with(".rpm") {
                 80
