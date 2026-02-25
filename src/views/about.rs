@@ -20,7 +20,7 @@ pub fn About() -> Element {
 
             p {
                 class: paragraph_class,
-                "Proteus grew out of a train of thoughts inspired by a 2014 lecture by Dr. Andy Farnell at the University of Edinburgh which spoke, in part, about the distinction between fixed and performance mediums (ie film vs stage, album vs concert)."
+                "Proteus grew out of a train of thoughts inspired by a 2014 lecture by Dr. Andy Farnell at the University of Edinburgh which spoke, in part, about the distinctions between fixed and performance mediums (ie film vs stage, album vs concert)."
             }
 
             p {
