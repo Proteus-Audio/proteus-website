@@ -57,7 +57,7 @@ pub fn Downloads() -> Element {
                         a {
                             class: "inline-block rounded-sm border border-[var(--line)] bg-white px-4 py-2 text-sm font-semibold text-[var(--text)] transition hover:border-[var(--primary)] hover:text-[var(--primary-deep)]",
                             href: "/examples/demo.prot",
-                            download: true,
+                            download: "demo.prot",
                             "Download File"
                         }
                     }
@@ -73,7 +73,7 @@ pub fn Downloads() -> Element {
                         a {
                             class: "inline-block rounded-sm border border-[var(--line)] bg-white px-4 py-2 text-sm font-semibold text-[var(--text)] transition hover:border-[var(--primary)] hover:text-[var(--primary-deep)]",
                             href: "/examples/demo-effects.prot",
-                            download: true,
+                            download: "demo-effects.prot",
                             "Download File"
                         }
                     }
@@ -92,7 +92,7 @@ pub fn Downloads() -> Element {
                         a {
                             class: "inline-block rounded-sm border border-[var(--line)] bg-white px-4 py-2 text-sm font-semibold text-[var(--text)] transition hover:border-[var(--primary)] hover:text-[var(--primary-deep)]",
                             href: "/examples/demo-full-length.prot",
-                            download: true,
+                            download: "demo-full-length.prot",
                             "Download File"
                         }
                     }
