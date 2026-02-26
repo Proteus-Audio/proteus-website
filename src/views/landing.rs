@@ -11,11 +11,11 @@ pub fn Landing() -> Element {
                 class: "space-y-4",
                 p {
                     class: "font-silkscreen text-[11px] tracking-[0.06em] text-[var(--primary-deep)]",
-                    "Procedural Song Playback"
+                    "Procedural Variable Playback"
                 }
                 h2 {
                     class: "text-3xl font-extrabold leading-tight text-[var(--text)] md:text-5xl",
-                    "A new audio format for recorded music."
+                    "An experimental audio format for recorded music."
                 }
                 p {
                     class: "max-w-3xl text-sm leading-7 text-muted md:text-base",

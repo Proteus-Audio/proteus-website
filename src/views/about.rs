@@ -66,6 +66,44 @@ pub fn About() -> Element {
 
             hr { class: "my-4 mt-8 border border-gray-200" }
 
+            h3 { class: "mt-8 text-2xl font-bold text-[var(--text)]", "Proteus Player" }
+            p {
+                class: paragraph_class,
+                "Proteus Player is the listening app for playing .prot files and hearing a fresh take each time you press play."
+            }
+            div {
+                class: "mt-4 grid gap-4 lg:grid-cols-[1.2fr_0.8fr]",
+                div {
+                    div {
+                        class: "{card_class} flex flex-col gap-4",
+                        div {
+                            h4 { class: "text-lg font-semibold text-[var(--text)]", "Single-file player" }
+                            p {
+                                class: "mt-2 text-sm leading-7 text-muted",
+                                "This application, inspired by Apple’s Quicktime Player, simply loads and plays single files. Stay tuned for a future application supporting a library-styled player."
+                            }
+                        }
+                        div { class: "mt-4",
+                            Link {
+                                to: Route::DownloadPlayer {},
+                                class: cta_class,
+                                "Download Proteus Player"
+                            }
+                        }
+                    }
+                },
+                div {
+                    class: "w-full",
+                    img {
+                        class: "w-full max-w-[400px] mx-auto rounded-sm bg-white object-cover",
+                        src: "/images/prot-player-25-02-2026.webp",
+                        alt: "Screenshot of the Proteus Player desktop application",
+                    }
+                }
+            }
+
+            hr { class: "my-4 mt-8 border border-gray-200" }
+
             h3 { class: "mt-8 text-2xl font-bold text-[var(--text)]", "Proteus Author" }
             p {
                 class: paragraph_class,
@@ -98,39 +136,95 @@ pub fn About() -> Element {
                     }
                 }
             }
-
-            hr { class: "my-4 mt-8 border border-gray-200" }
-
-            h3 { class: "mt-8 text-2xl font-bold text-[var(--text)]", "Proteus Player" }
-            p {
-                class: paragraph_class,
-                "Proteus Player is the listening app for playing .prot files and hearing a fresh take each time you press play."
+            h2 {
+                class: "mt-8 font-silkscreen text-sm text-center tracking-[0.06em] text-[var(--primary-deep)]",
+                "Key Concepts/Features"
             }
             div {
-                class: "mt-4 grid gap-4 lg:grid-cols-[1.2fr_0.8fr]",
+                class: "mt-4",
                 div {
+                    class: "grid gap-4 lg:grid-cols-[1.1fr_0.9fr]",
                     div {
-                        class: "{card_class} flex flex-col gap-4",
-                        div {
-                            h4 { class: "text-lg font-semibold text-[var(--text)]", "Single-file player" }
-                            p {
-                                class: "mt-2 text-sm leading-7 text-muted",
-                                "This application, inspired by Apple’s Quicktime Player, simply loads and plays single files. Stay tuned for a future application supporting a library-styled player."
-                            }
+                        class: "{card_class}",
+                        h4 { class: "text-lg font-semibold text-[var(--text)]", "Shuffle Points" }
+                        p {
+                            class: "mt-2 text-sm leading-7 text-muted",
+                            "Shuffle points allow for adding re-shuffle moments where a new random track is assigned mid-piece."
                         }
-                        div { class: "mt-4",
-                            Link {
-                                to: Route::DownloadPlayer {},
-                                class: cta_class,
-                                "Download Proteus Player"
-                            }
+                        p {
+                            class: "mt-2 text-sm leading-7 text-muted",
+                            "This allows for even more variation by letting you, for example, choose a new random vocal take for each verse of a song or a new rhythm track for each phrase."
                         }
                     }
-                },
-                img {
-                    class: "w-full rounded-sm bg-white object-cover",
-                    src: "/images/prot-player-25-02-2026.webp",
-                    alt: "Screenshot of the Proteus Author desktop application",
+                    div {
+                        class: "{card_class}",
+                        video {
+                            class: "w-full rounded-sm bg-black object-cover",
+                            src: "/video/shuffle-point.mov",
+                            poster: "/video/shuffle-point-poster.webp",
+                            autoplay: true,
+                            muted: true,
+                            loop: true,
+                            playsinline: true,
+                            preload: "metadata",
+                        }
+                    }
+                }
+                div {
+                    class: "grid gap-4 lg:grid-cols-[0.6fr_1.4fr]",
+                    div {
+                        class: "{card_class} lg:col-start-2",
+                        h4 { class: "text-lg font-semibold text-[var(--text)]", "Track Controls" }
+                        p {
+                            class: "mt-2 text-sm leading-7 text-muted",
+                            "Apply levels and panning to the track which will render on playback"
+                        }
+                        p {
+                            class: "mt-2 text-sm leading-7 text-muted",
+                            "Soon these controls will let you set a range where each playback can apply a different level or pan selected from within the range."
+                        }
+                    }
+                    div {
+                        class: "{card_class} lg:row-start-1",
+                        video {
+                            class: "w-full rounded-sm bg-black object-cover",
+                            src: "/video/levels.mov",
+                            poster: "/video/levels-poster.webp",
+                            autoplay: true,
+                            muted: true,
+                            loop: true,
+                            playsinline: true,
+                            preload: "metadata",
+                        }
+                    }
+                }
+                div {
+                    class: "grid gap-4 lg:grid-cols-[1.1fr_0.9fr]",
+                    div {
+                        class: "{card_class}",
+                        h4 { class: "text-lg font-semibold text-[var(--text)]", "Effects Chain" }
+                        p {
+                            class: "mt-2 text-sm leading-7 text-muted",
+                            "Apply a lightweight DSP chain to ’Master’ bus."
+                        }
+                        p {
+                            class: "mt-2 text-sm leading-7 text-muted",
+                            "This allows for some additional signal processing to be done after the randomization process. Allowing at a minimum to level out unexpected clipping or to add creative effects that could not achieve the desired result when applied at the track level."
+                        }
+                    }
+                    div {
+                        class: "{card_class}",
+                        video {
+                            class: "w-full rounded-sm bg-black object-cover",
+                            src: "/video/effects.mov",
+                            poster: "/video/effects-poster.webp",
+                            autoplay: true,
+                            muted: true,
+                            loop: true,
+                            playsinline: true,
+                            preload: "metadata",
+                        }
+                    }
                 }
             }
         }
