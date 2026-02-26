@@ -227,6 +227,20 @@ pub fn DesktopAppDownloadPanel(
                     }
                 }
             }
+
+            if current_os == DesktopOs::MacOS {
+                div {
+                    class: "mt-4 rounded-sm border border-amber-200 bg-amber-50 px-4 py-3 text-left",
+                    p {
+                        class: "text-sm font-semibold text-amber-900",
+                        "Apple Gatekeeper note"
+                    }
+                    p {
+                        class: "mt-1 text-sm leading-6 text-amber-900/90",
+                        "If macOS blocks the app, right-click the app and choose Open, or go to System Settings > Privacy & Security and click Open Anyway."
+                    }
+                }
+            }
         }
 
         p {
