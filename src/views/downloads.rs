@@ -120,8 +120,8 @@ pub fn Downloads() -> Element {
                 div {
                     class: "text-xs mt-4 border border-amber-200 bg-amber-50 rounded p-4 text-amber-900",
                     span { class: "font-bold", "Note:" }
-                    " .prot and .protproject files are not yet associated in the filesystem with the applications. "
-                    "Therefore you must open files through the \"Open\" dialog in the app and not through the \"Open file with\" command in your filesystem."
+                    " The .prot and .protproject system file association with the applications is new and not fully tested. "
+                    "If the \"Open file with\" command in your filesystem fails to work, open the application first the proceed to open files through the \"Open\" dialog."
                 }
             }
         }
