@@ -160,7 +160,7 @@ pub fn About() -> Element {
                         class: "{card_class}",
                         video {
                             class: "w-full rounded-sm bg-black object-cover",
-                            src: "/video/shuffle-point.mov",
+                            src: "/video/shuffle-point-silent.mov",
                             poster: "/video/shuffle-point-poster.webp",
                             autoplay: true,
                             muted: true,
@@ -188,7 +188,7 @@ pub fn About() -> Element {
                         class: "{card_class} lg:row-start-1",
                         video {
                             class: "w-full rounded-sm bg-black object-cover",
-                            src: "/video/levels.mov",
+                            src: "/video/levels-silent.mov",
                             poster: "/video/levels-poster.webp",
                             autoplay: true,
                             muted: true,
@@ -216,7 +216,7 @@ pub fn About() -> Element {
                         class: "{card_class}",
                         video {
                             class: "w-full rounded-sm bg-black object-cover",
-                            src: "/video/effects.mov",
+                            src: "/video/effects-silent.mov",
                             poster: "/video/effects-poster.webp",
                             autoplay: true,
                             muted: true,
