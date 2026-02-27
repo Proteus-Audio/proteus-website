@@ -47,6 +47,25 @@ pub fn Downloads() -> Element {
 
                 div { class: "mt-4 grid",
                     article {
+                        class: "p-4 gap-2 grid grid-cols-[1fr_9rem] items-center even:bg-gray-100/50 first:border-t border-b border-gray-200",
+                        h3 {
+                            class: "md:hidden col-span-2 text-lg font-semibold text-[var(--text)]",
+                           "Demo Project"
+                        }
+                        div {
+                            class: "flex items-center gap-4",
+                            h3 { class: "hidden md:block text-lg font-semibold text-[var(--text)]", "Demo Project" }
+                            p { class: "mt-2 text-sm leading-6 text-muted", "The project associated with the \"Dry\" and \"Effects\" demo prot files below." }
+                        }
+                        a {
+                            class: "inline-block rounded-sm border border-[var(--line)] bg-white px-4 py-2 text-sm font-semibold text-[var(--text)] transition hover:border-[var(--primary)] hover:text-[var(--primary-deep)]",
+                            href: "/examples/demo-project.zip",
+                            download: "demo-project.zip",
+                            "Download File"
+                        }
+                    }
+
+                    article {
                         class: "p-4 grid grid-cols-[1fr_9rem] items-center even:bg-gray-100/50 first:border-t border-b border-gray-200",
                         h3 { class: "md:hidden col-span-2 text-lg font-semibold text-[var(--text)]", "Demo (Dry)" }
                         div {
@@ -96,6 +115,13 @@ pub fn Downloads() -> Element {
                             "Download File"
                         }
                     }
+                }
+
+                div {
+                    class: "text-xs mt-4 border border-amber-200 bg-amber-50 rounded p-4 text-amber-900",
+                    span { class: "font-bold", "Note:" }
+                    " .prot and .protproject files are not yet associated in the filesystem with the applications. "
+                    "Therefore you must open files through the \"Open\" dialog in the app and not through the \"Open file with\" command in your filesystem."
                 }
             }
         }
