@@ -230,14 +230,30 @@ pub fn DesktopAppDownloadPanel(
 
             if current_os == DesktopOs::MacOS {
                 div {
-                    class: "mt-4 rounded-sm border border-amber-200 bg-amber-50 px-4 py-3 text-left",
+                    class: "mt-4 rounded-sm border border-amber-200 bg-amber-50 px-4 py-3 text-left text-sm",
                     p {
-                        class: "text-sm font-semibold text-amber-900",
+                        class: "font-semibold text-amber-900",
                         "Apple Gatekeeper note"
                     }
                     p {
-                        class: "mt-1 text-sm leading-6 text-amber-900/90",
+                        class: "mt-1 leading-6 text-amber-900/90",
                         "If macOS blocks the app, right-click the app and choose Open, or go to System Settings > Privacy & Security and click Open Anyway."
+                    }
+                    p {
+                        class: "mt-1 leading-6 text-amber-900/90",
+                        "Note that, depending on your setup, you may have to run "
+                        span {
+                            class: "font-mono text-xs bg-amber-100 border border-amber-200 rounded px-2 py-1",
+                            "xattr -d com.apple.quarantine path/to/app"
+                        }
+                        " on the app file."
+                    }
+                    hr {
+                        class: "mt-4 mb-1 border-t border-amber-200",
+                    }
+                    p {
+                        class: "mt-1 text-xs leading-5 text-amber-900/90",
+                        "*Apple’s gatekeeper protects your Mac from malware by verifying the app’s signature matches that of the registered developer (to avoid counterfeit applications, that look like the original but hold malicious code). This unfortunately requires the developer to pay a yearly $100 fee. As this is a small passion project, this is not a priority at the moment."
                     }
                 }
             }
