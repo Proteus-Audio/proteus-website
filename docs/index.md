@@ -1,12 +1,28 @@
-# Proteus Docs
+# Proteus CLI
 
-This section is built from markdown files in the `docs` directory.
+Proteus CLI is the command-line tool for playing and inspecting Proteus audio from a terminal.
 
-The URL for each page follows the file path:
+Install it with Cargo:
 
-- `docs/index.md` renders at `/docs`
-- `docs/getting-started.md` renders at `/docs/getting-started`
-- `docs/author/exporting.md` renders at `/docs/author/exporting`
-- `docs/author/index.md` renders at `/docs/author`
+```sh
+cargo install proteus-cli
+```
 
-Add or move markdown files in `docs` and rebuild the app to update the generated docs registry.
+The installed command is `prot`.
+
+```sh
+prot path/to/song.prot
+```
+
+## What It Supports
+
+- Play `.prot` and `.mka` containers.
+- Play a single audio file.
+- Play a directory of nested audio files as a Proteus-style randomized project.
+- Generate directory project files with `shuffle_schedule.json` and `effects_chain.json`.
+- Inspect container metadata.
+- Probe, decode, and verify audio without starting playback.
+- Extract waveform peaks as JSON or binary peak files.
+- Generate and inspect audio effect chains.
+
+Start with [installation](/docs/cli/installation), then use the [playback guide](/docs/cli/playback) or the [command reference](/docs/cli/commands).

@@ -224,6 +224,7 @@ fn build_sidebar() -> Vec<SidebarNode> {
         insert_sidebar_page(&mut roots, doc.path, doc.title);
     }
 
+    sort_sidebar_nodes(&mut roots);
     roots
 }
 
@@ -314,4 +315,29 @@ fn path_contains_current(path: &str, current_path: &str) -> bool {
         && current_path.len() > path.len()
         && current_path.starts_with(path)
         && current_path.as_bytes().get(path.len()) == Some(&b'/')
+}
+
+fn sort_sidebar_nodes(nodes: &mut [SidebarNode]) {
+    nodes.sort_by(|a, b| {
+        doc_sort_weight(&a.path)
+            .cmp(&doc_sort_weight(&b.path))
+            .then_with(|| a.title.cmp(&b.title))
+    });
+
+    for node in nodes {
+        sort_sidebar_nodes(&mut node.children);
+    }
+}
+
+fn doc_sort_weight(path: &str) -> usize {
+    match path {
+        "" => 0,
+        "cli" => 10,
+        "cli/installation" => 20,
+        "cli/playback" => 30,
+        "cli/directory-projects" => 40,
+        "cli/effects-and-metering" => 50,
+        "cli/commands" => 60,
+        _ => 1_000,
+    }
 }
