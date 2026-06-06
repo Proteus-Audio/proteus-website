@@ -1,6 +1,9 @@
 use dioxus::prelude::*;
 
-use views::{About, DownloadAuthor, DownloadCli, DownloadPlayer, Downloads, Landing, SiteLayout};
+use views::{
+    About, DocsIndex, DocsPage, DownloadAuthor, DownloadCli, DownloadPlayer, Downloads, Landing,
+    SiteLayout,
+};
 
 mod components;
 mod views;
@@ -21,6 +24,10 @@ enum Route {
         DownloadPlayer {},
         #[route("/downloads/cli")]
         DownloadCli {},
+        #[route("/docs")]
+        DocsIndex {},
+        #[route("/docs/:..segments")]
+        DocsPage { segments: Vec<String> },
 }
 
 const SITE_CSS: Asset = asset!("/assets/styling/main.css");

@@ -15,6 +15,7 @@
     --color-amber-300: oklch(87.9% 0.169 91.605);
     --color-amber-500: oklch(76.9% 0.188 70.08);
     --color-amber-900: oklch(41.4% 0.112 45.904);
+    --color-amber-950: oklch(27.9% 0.077 45.635);
     --color-cyan-700: oklch(52% 0.105 223.128);
     --color-gray-100: oklch(96.7% 0.003 264.542);
     --color-gray-200: oklch(92.8% 0.006 264.531);
@@ -214,8 +215,14 @@
   .static {
     position: static;
   }
+  .sticky {
+    position: sticky;
+  }
   .top-2 {
     top: calc(var(--spacing) * 2);
+  }
+  .top-4 {
+    top: calc(var(--spacing) * 4);
   }
   .right-2 {
     right: calc(var(--spacing) * 2);
@@ -292,9 +299,6 @@
   .inline-flex {
     display: inline-flex;
   }
-  .table {
-    display: table;
-  }
   .aspect-square {
     aspect-ratio: 1 / 1;
   }
@@ -340,11 +344,8 @@
   .max-w-xs {
     max-width: var(--container-xs);
   }
-  .border-collapse {
-    border-collapse: collapse;
-  }
-  .resize {
-    resize: both;
+  .min-w-0 {
+    min-width: calc(var(--spacing) * 0);
   }
   .list-disc {
     list-style-type: disc;
@@ -381,6 +382,9 @@
   }
   .gap-4 {
     gap: calc(var(--spacing) * 4);
+  }
+  .gap-6 {
+    gap: calc(var(--spacing) * 6);
   }
   .space-y-1 {
     :where(& > :not(:last-child)) {
@@ -448,8 +452,8 @@
   .border-amber-200 {
     border-color: var(--color-amber-200);
   }
-  .border-amber-500 {
-    border-color: var(--color-amber-500);
+  .border-amber-300 {
+    border-color: var(--color-amber-300);
   }
   .border-amber-500\/20 {
     border-color: color-mix(in srgb, oklch(76.9% 0.188 70.08) 20%, transparent);
@@ -483,9 +487,6 @@
   }
   .bg-amber-100 {
     background-color: var(--color-amber-100);
-  }
-  .bg-amber-300 {
-    background-color: var(--color-amber-300);
   }
   .bg-amber-300\/75 {
     background-color: color-mix(in srgb, oklch(87.9% 0.169 91.605) 75%, transparent);
@@ -523,9 +524,6 @@
   .p-8 {
     padding: calc(var(--spacing) * 8);
   }
-  .px-1 {
-    padding-inline: calc(var(--spacing) * 1);
-  }
   .px-1\.5 {
     padding-inline: calc(var(--spacing) * 1.5);
   }
@@ -540,9 +538,6 @@
   }
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
-  }
-  .py-0 {
-    padding-block: calc(var(--spacing) * 0);
   }
   .py-0\.5 {
     padding-block: calc(var(--spacing) * 0.5);
@@ -665,6 +660,9 @@
       color: color-mix(in oklab, var(--color-amber-900) 90%, transparent);
     }
   }
+  .text-amber-950 {
+    color: var(--color-amber-950);
+  }
   .text-cyan-700 {
     color: var(--color-cyan-700);
   }
@@ -688,10 +686,6 @@
   }
   .underline-offset-2 {
     text-underline-offset: 2px;
-  }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
   }
   .transition {
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, visibility, content-visibility, overlay, pointer-events;
@@ -750,6 +744,13 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--primary-deep);
+      }
+    }
+  }
+  .hover\:bg-amber-100 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-amber-100);
       }
     }
   }
@@ -854,6 +855,27 @@
       grid-template-columns: 1.2fr 0.8fr;
     }
   }
+  .lg\:grid-cols-\[14rem_1fr\] {
+    @media (width >= 64rem) {
+      grid-template-columns: 14rem 1fr;
+    }
+  }
+  .lg\:border-r {
+    @media (width >= 64rem) {
+      border-right-style: var(--tw-border-style);
+      border-right-width: 1px;
+    }
+  }
+  .lg\:border-\[var\(--line\)\] {
+    @media (width >= 64rem) {
+      border-color: var(--line);
+    }
+  }
+  .lg\:pr-4 {
+    @media (width >= 64rem) {
+      padding-right: calc(var(--spacing) * 4);
+    }
+  }
 }
 @property --tw-space-y-reverse {
   syntax: "*";
@@ -877,11 +899,6 @@
   syntax: "*";
   inherits: false;
 }
-@property --tw-outline-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
-}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
@@ -890,7 +907,6 @@
       --tw-leading: initial;
       --tw-font-weight: initial;
       --tw-tracking: initial;
-      --tw-outline-style: solid;
     }
   }
 }

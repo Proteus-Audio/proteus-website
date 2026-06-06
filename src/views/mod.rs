@@ -13,6 +13,9 @@ pub use download_player::DownloadPlayer;
 mod download_cli;
 pub use download_cli::DownloadCli;
 
+mod docs;
+pub use docs::{DocsIndex, DocsPage};
+
 mod landing;
 pub use landing::Landing;
 

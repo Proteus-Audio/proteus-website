@@ -4,13 +4,14 @@ use dioxus::prelude::*;
 #[component]
 pub fn SiteLayout() -> Element {
     let current: Route = use_route();
-    let (is_landing, is_about, is_downloads) = match &current {
-        Route::Landing {} => (true, false, false),
-        Route::About {} => (false, true, false),
+    let (is_landing, is_about, is_downloads, is_docs) = match &current {
+        Route::Landing {} => (true, false, false, false),
+        Route::About {} => (false, true, false, false),
         Route::Downloads {}
         | Route::DownloadAuthor {}
         | Route::DownloadPlayer {}
-        | Route::DownloadCli {} => (false, false, true),
+        | Route::DownloadCli {} => (false, false, true, false),
+        Route::DocsIndex {} | Route::DocsPage { .. } => (false, false, false, true),
     };
 
     let nav_inactive = "rounded-sm border border-transparent px-3.5 py-2 text-sm font-semibold text-[var(--text)] transition hover:bg-[rgba(25,120,164,0.08)] hover:text-[var(--primary-deep)]";
@@ -70,6 +71,7 @@ pub fn SiteLayout() -> Element {
                             Link { to: Route::Landing {}, class: if is_landing { nav_active } else { nav_inactive }, "Home" }
                             Link { to: Route::About {}, class: if is_about { nav_active } else { nav_inactive }, "About" }
                             Link { to: Route::Downloads {}, class: if is_downloads { nav_active } else { nav_inactive }, "Downloads" }
+                            Link { to: Route::DocsIndex {}, class: if is_docs { nav_active } else { nav_inactive }, "Docs" }
                         }
                     }
 
