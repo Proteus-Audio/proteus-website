@@ -77,6 +77,30 @@ body {
   font-family: "Silkscreen", "Inter", sans-serif;
 }
 
+.docs-sidebar-toggle,
+.docs-sidebar-spacer {
+  display: inline-flex;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: 0 0 1.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.docs-sidebar-toggle {
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: #ffffff;
+  color: var(--primary-deep);
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.docs-sidebar-toggle:hover {
+  background: rgba(25, 120, 164, 0.08);
+}
+
 .docs-content {
   max-width: 48rem;
 }

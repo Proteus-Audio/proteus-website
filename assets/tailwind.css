@@ -347,6 +347,9 @@
   .min-w-0 {
     min-width: calc(var(--spacing) * 0);
   }
+  .flex-1 {
+    flex: 1;
+  }
   .list-disc {
     list-style-type: disc;
   }
