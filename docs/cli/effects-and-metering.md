@@ -18,6 +18,56 @@ prot song.prot --effects-json effects_chain.json
 
 For directory projects, `effects_chain.json` is loaded automatically when it exists in the project directory. A command-line `--effects-json` path overrides the directory file.
 
+## Supported Effects
+
+An effects chain is a JSON array of effect settings. The CLI source currently builds the default chain with these effect types:
+
+- `ConvolutionReverbSettings` for convolution reverb from an impulse response.
+- `DiffusionReverbSettings` for algorithmic diffusion reverb.
+- `DelayReverbSettings` for a simple delay-style reverb.
+- `LowPassFilterSettings` for low-pass filtering.
+- `HighPassFilterSettings` for high-pass filtering.
+- `DistortionSettings` for gain and threshold distortion.
+- `GainSettings` for linear gain adjustment.
+- `CompressorSettings` for dynamic range compression.
+- `LimiterSettings` for peak limiting.
+- `MultibandEqSettings` for multi-band equalization points.
+- `PanSettings` for stereo placement.
+
+Use the generator to get the exact JSON shape for the version you have installed:
+
+```sh
+prot create effects-json
+```
+
+Each generated effect includes an `enabled` field. Disabled effects can stay in the chain as editable placeholders without changing the sound.
+
+## Example Chain
+
+A short chain with gain and limiting looks like this:
+
+```json
+[
+  {
+    "GainSettings": {
+      "enabled": true,
+      "gain": 1.1
+    }
+  },
+  {
+    "LimiterSettings": {
+      "enabled": true,
+      "threshold_db": -1.0,
+      "knee_width_db": 4.0,
+      "attack_ms": 5.0,
+      "release_ms": 100.0
+    }
+  }
+]
+```
+
+Effect settings are applied in array order.
+
 ## Offline Metering
 
 The `meter effects` command runs an input through an effect chain and prints before/after levels.

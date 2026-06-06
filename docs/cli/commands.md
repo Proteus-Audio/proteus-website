@@ -123,6 +123,8 @@ Redirect it to a file for editing:
 prot create effects-json > effects_chain.json
 ```
 
+See [Effects and Metering](/docs/cli/effects-and-metering) for the supported effect types.
+
 ## `meter`
 
 Run offline effect-chain metering:
