@@ -28,6 +28,7 @@ COPY assets ./assets
 COPY public ./public
 COPY docs ./docs
 COPY src ./src
+COPY build.rs ./build.rs
 
 # Create the final bundle folder. Bundle with release build profile to enable optimizations.
 RUN dx bundle --web --release
