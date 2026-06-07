@@ -53,6 +53,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 COPY --from=builder /app/target/dx/proteus-website/release/web /app
+RUN mv /app/server /app/proteus-website
 
 ENV RUST_LOG=info
 ENV PORT=8080
